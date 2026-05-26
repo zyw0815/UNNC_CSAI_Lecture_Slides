@@ -1,0 +1,46 @@
+\usepackage{xcolor}
+\definecolor{primary}{HTML}{1F3A5F}   % deep navy  - H1
+\definecolor{accent}{HTML}{1E8A8A}    % teal       - H2 / tags
+\definecolor{boldcol}{HTML}{14406B}   % bold terms
+\definecolor{notebg}{HTML}{EAF3FB}    % CN note bg
+\definecolor{notebar}{HTML}{2E7CD6}   % CN note bar
+\definecolor{keybg}{HTML}{FFF7E0}     % key box bg
+\definecolor{keybar}{HTML}{E0A100}    % key box bar
+\definecolor{rulecol}{HTML}{9FB8D4}   % table / heading rules
+
+% ---- colored, well-spaced headings ----
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{primary}}{\thesection.}{0.5em}{}[{\color{rulecol}\titlerule[1pt]}]
+\titleformat{\subsection}{\large\bfseries\color{accent}}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{primary}}{}{0em}{}
+\titlespacing*{\section}{0pt}{18pt}{9pt}
+\titlespacing*{\subsection}{0pt}{12pt}{5pt}
+\titlespacing*{\subsubsection}{0pt}{8pt}{3pt}
+
+% ---- airy spacing ----
+\usepackage{setspace}
+\setstretch{1.14}
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+
+% setspace stretch breaks longtable page splits -> reset inside tables
+\usepackage{etoolbox}
+\AtBeginEnvironment{longtable}{\setstretch{1.0}\small}
+
+% ---- colour bold key terms ----
+\let\oldtextbf\textbf
+\renewcommand{\textbf}[1]{{\color{boldcol}\oldtextbf{#1}}}
+
+% ---- lecture tag badge:  \lec{Lec07} ----
+\newcommand{\lec}[1]{{\small\textsf{\color{accent}[#1]}}}
+
+% ---- callout boxes ----
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+
+% Chinese helper note  (blockquote  >  ... )
+\renewenvironment{quote}
+ {\begin{tcolorbox}[breakable,enhanced,colback=notebg,colframe=notebg,boxrule=0pt,
+   borderline west={3pt}{0pt}{notebar},left=10pt,right=8pt,top=5pt,bottom=5pt,arc=2pt]}
+ {\end{tcolorbox}}
