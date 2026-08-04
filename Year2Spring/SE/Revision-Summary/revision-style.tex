@@ -19,8 +19,8 @@
 
 % ---- airy spacing ----
 \usepackage{setspace}
-\setstretch{1.14}
-\setlength{\parskip}{5pt}
+\setstretch{1.6}
+\setlength{\parskip}{12pt}
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{3em}
 
@@ -28,12 +28,20 @@
 \usepackage{etoolbox}
 \AtBeginEnvironment{longtable}{\setstretch{1.0}\small}
 
+% keep code blocks compact so they never overflow the right margin
+\AtBeginEnvironment{verbatim}{\setstretch{1.0}\small}
+\AtBeginEnvironment{Highlighting}{\setstretch{1.0}\small}
+
 % ---- colour bold key terms ----
 \let\oldtextbf\textbf
 \renewcommand{\textbf}[1]{{\color{boldcol}\oldtextbf{#1}}}
 
 % ---- lecture tag badge:  \lec{Lec07} ----
 \newcommand{\lec}[1]{{\small\textsf{\color{accent}[#1]}}}
+
+% render the whole table of contents smaller so long entries
+% (incl. the [Lec] badges) never overflow the right margin
+\AtBeginDocument{\addtocontents{toc}{\protect\footnotesize}}
 
 % ---- callout boxes ----
 \usepackage{tcolorbox}
